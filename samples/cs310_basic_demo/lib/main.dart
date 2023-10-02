@@ -1,4 +1,4 @@
-import 'package:english_words/english_words.dart';
+import 'package:english words/english words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,49 +27,20 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
-
-  void getNext() {
-    current = WordPair.random();
-    notifyListeners();
-  }
 }
 
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    var pair = appState.current;
 
     return Scaffold(
       body: Column(
         children: [
-          Text('A random AWESOME idea:'), // ← Example change.
-          bigtext(pair: pair),
-          ElevatedButton(
-            onPressed: () {
-              appState.getNext();
-            },
-            child: Text('Next'),
-          ),
+          Text('A random idea:'),
+          Text(appState.current.asLowerCase),
         ],
       ),
-    );
-  }
-}
-
-class bigtext extends StatelessWidget {
-  const bigtext({
-    super.key,
-    required this.pair,
-  });
-
-  final WordPair pair;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Text(pair.asLowerCase),
     );
   }
 }
